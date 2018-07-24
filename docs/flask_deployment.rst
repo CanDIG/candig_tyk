@@ -58,6 +58,7 @@ Make a virtualenv, and install the ga4gh package with an empty repo:
   touch /srv/ga4gh/ga4gh-server-env/ga4gh/server/templates/initial_peers.txt
   mkdir /srv/ga4gh/ga4gh-server-env/ga4gh-example-data
   ga4gh_repo init ga4gh-example-data/registry.db
+  deactivate
 
 Create the WSGI file at ``/srv/ga4gh/application.wsgi`` and write the following
 contents:
