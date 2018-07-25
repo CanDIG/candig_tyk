@@ -84,7 +84,7 @@ If running a development version of the ga4gh flask server using the default Wer
         KC_REALM, KC_SCOPE, KC_RTYPE, KC_CLIENT_ID, KC_RMODE, KC_REDIRECT
     )
 
-If running a production version of the ga4gh flask server, ignore this and follow the setup instructions [ here ]  
+If running a production version of the ga4gh flask server, ignore this and follow the setup instructions @ https://github.com/CanDIG/candig_tyk/blob/master/docs/flask_deployment.rst   
 
 Configure Keycloak
 ------------------
