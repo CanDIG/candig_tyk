@@ -272,12 +272,14 @@ authMiddleware.NewProcessRequest(function(request, session, spec) {
          
         // no attempt at providing credentials, redirect to login endpoint
         } else {
-            log("Authentication not attempted");
+	    
+            if (request.URL != logoutUri) {
+                log("Authentication not attempted");
         
-            request.AddParams["redirectUri"] = redirectUri
-            request.URL = loginUri
+                request.AddParams["redirectUri"] = redirectUri
+                request.URL = loginUri
+            }
         }
-
     }
 
     if (request.URL == logoutUri) {
