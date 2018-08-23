@@ -9,7 +9,7 @@ Create API (Using Dashboard)
 ----------------------------
 - System Management > API's > Add New API
 - API Name: <new api>
-- Listen path (create a name and strip trailing '/')
+- Listen path: create a name and strip trailing '/' (to use an empty path, set the listen path to exactly '/') 
 - Target URL: ga4gh-flask server to proxy to (can be a development or production version)
 - Scroll down to Authentication mode: Select OpenID Connect (leave unconfigured for now)
 - Save
@@ -49,7 +49,7 @@ While on the API admin page, navigate to Advanced Configuration tab and scroll d
     "keycloak_realm": "<keycloak realm on which client exists>",
     "keycloak_host": “http(s)://<keycloak server address>”,
     "tyk_host": "http(s)://<tyk server address>",
-    "tyk_listen": "<tyk listen path>"
+    "tyk_listen": "<tyk listen path>" #note if using an empty path, set this to an empty string ("")
   }
 
 Middleware
@@ -70,7 +70,7 @@ If running a development version of the ga4gh flask server using the default Wer
 
     TYK_ENABLED = True
     TYK_SERVER = 'http(s)://<tyk server address>'
-    TYK_LISTEN_PATH = '<tyk listen path>'
+    TYK_LISTEN_PATH = '<tyk listen path>' #note if using an empty path, set this to an empty string ('')
 
     # Keycloak settings with redirection through tyk
     KC_REALM = '<keycloak realm on which client exists>'
@@ -84,7 +84,7 @@ If running a development version of the ga4gh flask server using the default Wer
         KC_REALM, KC_SCOPE, KC_RTYPE, KC_CLIENT_ID, KC_RMODE, KC_REDIRECT
     )
 
-If running a production version of the ga4gh flask server, ignore this and follow the setup instructions [ here ]  
+If running a production version of the ga4gh flask server, ignore this and follow the setup instructions @ https://github.com/CanDIG/candig_tyk/blob/master/docs/flask_deployment.rst   
 
 Configure Keycloak
 ------------------

@@ -92,7 +92,7 @@ following contents (edit for http and server addresses/paths):
     KC_CLIENT_ID = '<keycloak client>'
     KC_RMODE = 'form_post'
     KC_REDIRECT = TYK_SERVER+TYK_LISTEN_PATH+'/login_oidc'
-    KC_LOGIN_REDIRECT = '/auth/realms/{0}/protocol/openid-connect/auth?scope={1}&response_type={2}&client_id={3}&response_mode{4}&redirect_uri={5}'.format(KC_REALM, KC_SCOPE, KC_RTYPE, KC_CLIENT_ID, KC_RMODE, KC_REDIRECT)
+    KC_LOGIN_REDIRECT = '/auth/realms/{0}/protocol/openid-connect/auth?scope={1}&response_type={2}&client_id={3}&response_mode={4}&redirect_uri={5}'.format(KC_REALM, KC_SCOPE, KC_RTYPE, KC_CLIENT_ID, KC_RMODE, KC_REDIRECT)
 
 Note that it is expected that the user running the server, `apache`, 
 have write and read access to the directories containing data files.
