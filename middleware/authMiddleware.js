@@ -273,20 +273,12 @@ authMiddleware.NewProcessRequest(function(request, session, spec) {
         // no attempt at providing credentials, redirect to login endpoint
         } else {
 	    
-            if (request.URL != logoutUri) {
-                log("Authentication not attempted");
+            log("Authentication not attempted");
         
-                request.AddParams["redirectUri"] = redirectUri
-                request.URL = loginUri
-            }
+            request.AddParams["redirectUri"] = redirectUri
+            request.URL = loginUri
         }
     }
-
-    if (request.URL == logoutUri) {
-
-        // handle keyloak server connection
-        var logoutResponse = logoutOIDC(request, spec);
-    }  
     
     // MUST return both the request and session  
     return authMiddleware.ReturnData(request, session.meta_data);
