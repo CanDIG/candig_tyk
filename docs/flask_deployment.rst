@@ -42,23 +42,12 @@ and data. For convenience, we make this owned by the current user
   sudo chown $USER /srv/ga4gh
   cd /srv/ga4gh
 
-Make a virtualenv, and install the flask package with an empty repo:
+Download and run the flask package basic install script (Note: if reinstalling the flask package, first delete your ga4gh-server-env directory) :
 
 .. code-block:: bash
 
-  virtualenv ga4gh-server-env
-  cd ga4gh-server-env
-  source bin/activate
-  pip install --upgrade pip setuptools
-  pip install git+https://github.com/CanDIG/ga4gh-schemas.git@authz#egg=ga4gh_schemas
-  pip install git+https://github.com/CanDIG/ga4gh-client.git@authz#egg=ga4gh_client
-  pip install git+https://github.com/CanDIG/ga4gh-server.git@master#egg=ga4gh_server
-  pip install git+https://github.com/CanDIG/PROFYLE_ingest.git@authz#egg=PROFYLE_ingest
-  mkdir -p /srv/ga4gh/ga4gh-server-env/ga4gh/server/templates
-  touch /srv/ga4gh/ga4gh-server-env/ga4gh/server/templates/initial_peers.txt
-  mkdir /srv/ga4gh/ga4gh-server-env/ga4gh-example-data
-  ga4gh_repo init ga4gh-example-data/registry.db
-  deactivate
+  wget https://raw.githubusercontent.com/CanDIG/candig_tyk/master/docs/flask_install.sh
+  ./flask_install.sh
 
 Create the WSGI file at ``/srv/ga4gh/application.wsgi`` and write the following
 contents:
