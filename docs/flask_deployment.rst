@@ -42,7 +42,7 @@ and data. For convenience, we make this owned by the current user
   sudo chown $USER /srv/ga4gh
   cd /srv/ga4gh
 
-Make a virtualenv, and install the ga4gh package with an empty repo:
+Make a virtualenv, and install the flask package with an empty repo:
 
 .. code-block:: bash
 
@@ -52,7 +52,7 @@ Make a virtualenv, and install the ga4gh package with an empty repo:
   pip install --upgrade pip setuptools
   pip install git+https://github.com/CanDIG/ga4gh-schemas.git@authz#egg=ga4gh_schemas
   pip install git+https://github.com/CanDIG/ga4gh-client.git@authz#egg=ga4gh_client
-  pip install git+https://github.com/CanDIG/ga4gh-server.git@authz#egg=ga4gh_server
+  pip install git+https://github.com/CanDIG/ga4gh-server.git@master#egg=ga4gh_server
   pip install git+https://github.com/CanDIG/PROFYLE_ingest.git@authz#egg=PROFYLE_ingest
   mkdir -p /srv/ga4gh/ga4gh-server-env/ga4gh/server/templates
   touch /srv/ga4gh/ga4gh-server-env/ga4gh/server/templates/initial_peers.txt
