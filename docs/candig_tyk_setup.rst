@@ -3,7 +3,7 @@
 Configuring Tyk for CanDIG Architecture:
 ****************************************
 
-This document assumes that Tyk-gateway, Tyk-dashboard, Keycloak, and a CanDIG ga4gh-flask server (latest authz branch) have been properly installed. Most of the Tyk configuration here can be done using the dashboard. If the default Tyk installation instructions were followed, it can be logged into on port 3000.
+This document assumes that Tyk-gateway, Tyk-dashboard, Keycloak, and a CanDIG ga4gh-flask server (latest master branch) have been properly installed. Most of the Tyk configuration here can be done using the dashboard. If the default Tyk installation instructions were followed, it can be logged into on port 3000.
 
 Create API (Using Dashboard)
 ----------------------------
