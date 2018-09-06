@@ -100,7 +100,7 @@ and insert the following contents towards the end of the file
         processes=10 threads=1 \
         python-path=/srv/ga4gh/ga4gh-server-env/lib/python2.7/site-packages \
         python-eggs=/var/cache/apache2/python-egg-cache
-    WSGIScriptAlias /ga4gh /srv/ga4gh/application.wsgi
+    WSGIScriptAlias / /srv/ga4gh/application.wsgi
 
     <Directory /srv/ga4gh>
         WSGIProcessGroup ga4gh
@@ -113,6 +113,7 @@ and insert the following contents towards the end of the file
 
     Be sure to keep the number of threads limited to 1 in the WSGIDaemonProcess
     setting. Performance tuning should be done using the processes setting.
+    If using Apache webserver WSGIScriptAlias URL-path must be '/'.
 
 The instructions for configuring Apache 2.2 (on Ubuntu 14.04) are the same as
 above with thee following exceptions:
