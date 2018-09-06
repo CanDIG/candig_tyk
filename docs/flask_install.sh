@@ -8,6 +8,7 @@
   pip install git+https://github.com/CanDIG/PROFYLE_ingest.git@authz#egg=PROFYLE_ingest
   mkdir -p /srv/ga4gh/ga4gh-server-env/ga4gh/server/templates
   touch /srv/ga4gh/ga4gh-server-env/ga4gh/server/templates/initial_peers.txt
+  touch access_list.txt
   mkdir /srv/ga4gh/ga4gh-server-env/ga4gh-example-data
   ga4gh_repo init ga4gh-example-data/registry.db
   deactivate
