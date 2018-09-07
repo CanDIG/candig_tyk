@@ -49,7 +49,7 @@ While on the API admin page, navigate to Advanced Configuration tab and scroll d
     "keycloak_realm": "<keycloak realm on which client exists>",
     "keycloak_host": “http(s)://<keycloak server address>”,
     "tyk_host": "http(s)://<tyk server address>",
-    "tyk_listen": "<tyk listen path>" #note if using an empty path, set this to an empty string ("")
+    "tyk_listen": "</tyk listen path>" #note if using an empty path, set this to an empty string ("")
   }
 
 Middleware
@@ -70,7 +70,7 @@ If running a development version of the ga4gh flask server using the default Wer
 
     TYK_ENABLED = True
     TYK_SERVER = 'http(s)://<tyk server address>'
-    TYK_LISTEN_PATH = '<tyk listen path>' #note if using an empty path, set this to an empty string ('')
+    TYK_LISTEN_PATH = '</tyk listen path>' #note if using an empty path, set this to an empty string ('')
 
     # Keycloak settings with redirection through tyk
     KC_REALM = '<keycloak realm on which client exists>'
