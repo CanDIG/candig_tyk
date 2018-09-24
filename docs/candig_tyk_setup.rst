@@ -115,13 +115,10 @@ Navigate to Clients and select your new client and edit:
 
 Authorization (current solution):
 
-- Clients > Select Client > Roles > Create roles
-- Enter role name as: '<project_name> : <access_level>' e.g. profyle:0 would be min access to the data (4 for max)
-
-- Clients > Select Client > Mappers > Create
-	- Protocol: openid-connect
-	- User Client Role
-	- <use selected client>
-	- Multivalued: ON, type: STRING
-	- Token Claim name: access_levels
-	- Add to ID TOKEN: True and Add to Access TOKEN: True
+- No longer using keycloak to manage data access authz levels
+- After installing the flask application, use the "access_list.txt" in the root env directory to set access levels:
+	<user>:<project>:<access level 0-4> 0=least access, 4=full access
+	e.g.
+	john:project1:4
+	bob:project2:0
+  
