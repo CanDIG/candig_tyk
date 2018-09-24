@@ -67,6 +67,7 @@ following contents (edit for http and server addresses/paths):
     DATA_SOURCE = '/srv/ga4gh/ga4gh-server-env/ga4gh-example-data/registry.db'
     REQUEST_VALIDATION = True
     INITIAL_PEERS = '/srv/ga4gh/ga4gh-server-env/ga4gh/server/templates/initial_peers.txt'
+    ACCESS_LIST = '/srv/ga4gh/ga4gh-server-env/access_list.txt'
 
     # Tyk settings 
     TYK_ENABLED = True
