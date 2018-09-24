@@ -115,10 +115,15 @@ Navigate to Clients and select your new client and edit:
 
 Authorization (current solution):
 
-- No longer using keycloak to manage data access authz levels
-- After installing the flask application, use the "access_list.txt" in the root env directory to set access levels:
-	<user>:<project>:<access level 0-4> 0=least access, 4=full access
-	e.g.
-	john:project1:4
-	bob:project2:0
+    No longer using keycloak to manage data access authz levels
+
+    After installing the flask application, use the "access_list.txt" in the root env directory to set access levels:
+    
+    <user>:<project>:<access level 0-4> 0=least access, 4=full access
+
+example:
+
+::   
   
+    john:project1:4 
+    bob:project2:0
