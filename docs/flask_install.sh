@@ -2,7 +2,7 @@
   cd ga4gh-server-env
   source bin/activate
   pip install --upgrade pip setuptools
-  pip install git+https://github.com/CanDIG/ga4gh-schemas.git@authz#egg=ga4gh_schemas
+  pip install git+https://github.com/CanDIG/ga4gh-schemas.git@search#egg=ga4gh_schemas
   pip install git+https://github.com/CanDIG/ga4gh-client.git@authz#egg=ga4gh_client
   pip install git+https://github.com/CanDIG/ga4gh-server.git@master#egg=ga4gh_server
   pip install git+https://github.com/CanDIG/PROFYLE_ingest.git@authz#egg=PROFYLE_ingest
