@@ -142,15 +142,8 @@ authMiddleware.NewProcessRequest(function(request, session, spec) {
 
     // prepare auth/redirect urls
     var tokenUri = spec.config_data.tyk_listen + '/token'
-    var redirectUri = spec.config_data.tyk_host + request.URL
-    var logoutUri = spec.config_data.tyk_listen + '/logout_oidc'
-    var loginUri = "/login_oidc"
-    
-    /*
-    var tokenUri = "/token"
-    var staticUri = "/static"
-    var redirectUri = "/test"
-    */
+    var redirectUri = spec.config_data.tyk_host + '/login_oidc'
+    var returnUri = spec.config_data.tyk_host + request.URL
 
     // if no auth header, try to get a token
     if (request.Headers["Authorization"] == undefined) {
@@ -222,8 +215,8 @@ authMiddleware.NewProcessRequest(function(request, session, spec) {
                     log(JSON.stringify(decodedBody))
                 }
                 // redirect request back to login
-                request.AddParams["redirectUri"] = redirectUri
-                request.URL = loginUri
+                request.AddParams["returnUri"] = returnUri
+                request.URL = redirectUri
             }
 
 
@@ -275,8 +268,8 @@ authMiddleware.NewProcessRequest(function(request, session, spec) {
 	    
             log("Authentication not attempted");
         
-            request.AddParams["redirectUri"] = redirectUri
-            request.URL = loginUri
+            request.AddParams["returnUri"] = returnUri
+            request.URL = redirectUri
         }
     }
     
