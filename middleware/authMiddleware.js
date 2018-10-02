@@ -183,6 +183,9 @@ authMiddleware.NewProcessRequest(function(request, session, spec) {
         // convert code to token (initial login - browser access)
         } else if (code != undefined) {
 
+            // set url to redirect to after successful login
+            request.AddParams["returnUri"] = returnUri
+
             body = {
                 "client_id": spec.config_data.keycloak_client,
                 "client_secret": spec.config_data.keycloak_secret,
@@ -216,7 +219,6 @@ authMiddleware.NewProcessRequest(function(request, session, spec) {
                     log(JSON.stringify(decodedBody))
                 }
                 // redirect request back to login
-                request.AddParams["returnUri"] = returnUri
                 request.URL = loginUri
             }
 
