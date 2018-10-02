@@ -141,8 +141,9 @@ authMiddleware.NewProcessRequest(function(request, session, spec) {
     log("Running Authorization JSVM middleware")
 
     // prepare auth/redirect urls
+    var loginUri = '/login_oidc'
     var tokenUri = spec.config_data.tyk_listen + '/token'
-    var redirectUri = spec.config_data.tyk_host + '/login_oidc'
+    var redirectUri = spec.config_data.tyk_host + loginUri
     var returnUri = spec.config_data.tyk_host + request.URL
 
     // if no auth header, try to get a token
@@ -216,7 +217,7 @@ authMiddleware.NewProcessRequest(function(request, session, spec) {
                 }
                 // redirect request back to login
                 request.AddParams["returnUri"] = returnUri
-                request.URL = redirectUri
+                request.URL = loginUri
             }
 
 
@@ -269,7 +270,7 @@ authMiddleware.NewProcessRequest(function(request, session, spec) {
             log("Authentication not attempted");
         
             request.AddParams["returnUri"] = returnUri
-            request.URL = redirectUri
+            request.URL = loginUri
         }
     }
     
