@@ -142,10 +142,9 @@ authMiddleware.NewProcessRequest(function(request, session, spec) {
 
     // prepare auth/redirect urls
     var baseUrl = spec.config_data.tyk_host + spec.config_data.tyk_listen
-    var loginUri = '/login_oidc'
     var tokenUri = spec.config_data.tyk_listen + '/token'
-    var redirectUri = baseUrl + loginUri
-    var returnUri = baseUrl + request.URL
+    var redirectUri = baseUrl + '/login_oidc'
+    var returnUri = spec.config_data.tyk_host + request.URL
 
     // if no auth header, try to get a token
     if (request.Headers["Authorization"] == undefined) {
@@ -174,8 +173,8 @@ authMiddleware.NewProcessRequest(function(request, session, spec) {
 
             // attach to header if token still valid
             if (isTokenExpired(idToken)) {
-                // if keycloak server session active, loginUri will auto-refresh id token
-                request.URL = loginUri
+                // if keycloak server session active, redirectUri will auto-refresh id token
+                request.URL = redirectUri
 
             } else {
                 request.SetHeaders["Authorization"] = "Bearer " + idToken;
@@ -220,7 +219,7 @@ authMiddleware.NewProcessRequest(function(request, session, spec) {
                     log(JSON.stringify(decodedBody))
                 }
                 // redirect request back to login
-                request.URL = loginUri
+                request.URL = redirectUri
             }
 
 
@@ -273,7 +272,7 @@ authMiddleware.NewProcessRequest(function(request, session, spec) {
             log("Authentication not attempted");
         
             request.AddParams["returnUri"] = returnUri
-            request.URL = loginUri
+            request.URL = redirectUri
         }
     }
     
