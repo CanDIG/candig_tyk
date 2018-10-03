@@ -141,10 +141,11 @@ authMiddleware.NewProcessRequest(function(request, session, spec) {
     log("Running Authorization JSVM middleware")
 
     // prepare auth/redirect urls
+    var baseUrl = spec.config_data.tyk_host + spec.config_data.tyk_listen
     var loginUri = '/login_oidc'
     var tokenUri = spec.config_data.tyk_listen + '/token'
-    var redirectUri = spec.config_data.tyk_host + loginUri
-    var returnUri = spec.config_data.tyk_host + request.URL
+    var redirectUri = baseUrl + loginUri
+    var returnUri = baseUrl + request.URL
 
     // if no auth header, try to get a token
     if (request.Headers["Authorization"] == undefined) {
