@@ -117,13 +117,21 @@ Authorization (current solution):
 
     No longer using keycloak to manage data access authz levels
 
-    After installing the flask application, use the "access_list.txt" in the root env directory to set access levels:
+    After installing the flask application, use the "access_list.tsv" in the root env directory to set access levels:
     
-    <user>:<project>:<access level 0-4> 0=least access, 4=full access
+    access levels 0-4 -> 0=min access, 4=full access, null=no access
 
 example:
 
 ::   
   
-    john:project1:4 
-    bob:project2:0
+    issuer	username	project1	project2	project3	projectN
+
+    https://candigauth.bcgsc.ca/auth/realms/candig	userA	4	4	4	4
+    https://candigauth.bcgsc.ca/auth/realms/candig	userB	4		0	1
+
+    https://candigauth.uhnresearch.ca/auth/realms/CanDIG	userC	4	3	2	1
+    https://candigauth.uhnresearch.ca/auth/realms/CanDIG	userD			4	4
+
+    https://candigauth.calculquebec.ca/auth/realms/candig	userE	4	4		4
+    https://candigauth.calculquebec.ca/auth/realms/candig	userF	0	0	4	4
