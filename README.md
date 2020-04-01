@@ -17,3 +17,5 @@ The middleware can be activated for an API by using the Dashboard to edit the 'R
         }
       ],
 ```
+## Archived
+This branch is an archive of the old Tyk setup, which uses the tyk-dashboard with no virtual endpoint set-up.
