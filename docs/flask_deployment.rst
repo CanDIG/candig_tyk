@@ -3,7 +3,9 @@
 Installation
 ************
 
-Modified from the ga4gh documentation files. These steps outline a production deployment of the CanDIG ga4gh-server running on Apache and mod_wsgi. The configuration files included here are also modified to support the CanDIG architecture which includes Tyk and Keycloak.
+Modified from the ga4gh documentation files. These steps outline a production deployment of the CanDIG candig-server running on Apache and mod_wsgi. The configuration files included here are also modified to support the CanDIG architecture which includes Tyk and Keycloak.
+
+Please note that you need to have python 3.6.x available to install the candig-server successfully.
 
 --------------------
 Deployment on Apache
@@ -32,57 +34,47 @@ the ``apache`` user:
   sudo mkdir /var/cache/httpd/python-egg-cache
   sudo chown apache:apache /var/cache/httpd/python-egg-cache/
 
-Create a directory to hold the GA4GH server code, configuration
+Create a directory to hold the candig-server code, configuration
 and data. For convenience, we make this owned by the current user
 (but make sure all the files are world-readable).:
 
 .. code-block:: bash
 
-  sudo mkdir /srv/ga4gh
-  sudo chown $USER /srv/ga4gh
-  cd /srv/ga4gh
+  sudo mkdir /srv/candig
+  sudo chown $USER /srv/candig
+  cd /srv/candig
 
-Download and run the flask package basic install script (Note: if reinstalling the flask package, first delete your ga4gh-server-env directory) :
+Download and run the flask package basic install script (Note: if reinstalling the flask package, first delete your candig-server-env directory) :
 
 .. code-block:: bash
 
   wget https://raw.githubusercontent.com/CanDIG/candig_tyk/master/docs/flask_install.sh
   ./flask_install.sh
 
-Create the WSGI file at ``/srv/ga4gh/application.wsgi`` and write the following
+Create the WSGI file at ``/srv/candig/application.wsgi`` and write the following
 contents:
 
 .. code-block:: python
 
-  from ga4gh.server.frontend import app as application
-  import ga4gh.server.frontend as frontend
-  frontend.configure(configFile = "/srv/ga4gh/config.py", baseConfig = "BaseConfig")
+  from candig.server.frontend import app as application
+  import candig.server.frontend as frontend
+  frontend.configure(configFile = "/srv/candig/config.py", baseConfig = "BaseConfig")
 
-Create the configuration file at ``/srv/ga4gh/config.py``, and write the
+Create the configuration file at ``/srv/candig/config.py``, and write the
 following contents (edit for http and server addresses/paths):
 
 .. code-block:: python
 
     # Production config
-    DATA_SOURCE = '/srv/ga4gh/ga4gh-server-env/ga4gh-example-data/registry.db'
+    DATA_SOURCE = '/srv/candig/candig-server-env/candig-example-data/registry.db'
     REQUEST_VALIDATION = True
-    INITIAL_PEERS = '/srv/ga4gh/ga4gh-server-env/ga4gh/server/templates/initial_peers.txt'
-    ACCESS_LIST = '/srv/ga4gh/ga4gh-server-env/access_list.txt'
+    ACCESS_LIST = '/srv/candig/candig-server-env/access_list.txt'
 
     # Tyk settings 
     TYK_ENABLED = True
     TYK_SERVER = 'http(s)://<tyk server address>'
     TYK_LISTEN_PATH = '<tyk listen path>'
 
-    # Keycloak settings with redirection through tyk
-    KC_REALM = '<key cloak realm>'
-    KC_SERVER = 'http(s)://<keycloak server address>'
-    KC_SCOPE = 'openid+email'
-    KC_RTYPE = 'code'
-    KC_CLIENT_ID = '<keycloak client>'
-    KC_RMODE = 'form_post'
-    KC_REDIRECT = TYK_SERVER+TYK_LISTEN_PATH+'/login_oidc'
-    KC_LOGIN_REDIRECT = '/auth/realms/{0}/protocol/openid-connect/auth?scope={1}&response_type={2}&client_id={3}&response_mode={4}&redirect_uri={5}'.format(KC_REALM, KC_SCOPE, KC_RTYPE, KC_CLIENT_ID, KC_RMODE, KC_REDIRECT)
 
 Note that it is expected that the user running the server, `apache`, 
 have write and read access to the directories containing data files.
@@ -97,14 +89,14 @@ and insert the following contents towards the end of the file
 
 .. code-block:: apacheconf
 
-    WSGIDaemonProcess ga4gh \
+    WSGIDaemonProcess candig \
         processes=10 threads=1 \
-        python-path=/srv/ga4gh/ga4gh-server-env/lib/python2.7/site-packages \
+        python-path=/srv/candig/candig-server-env/lib/python2.7/site-packages \
         python-eggs=/var/cache/apache2/python-egg-cache
-    WSGIScriptAlias / /srv/ga4gh/application.wsgi
+    WSGIScriptAlias / /srv/candig/application.wsgi
 
-    <Directory /srv/ga4gh>
-        WSGIProcessGroup ga4gh
+    <Directory /srv/candig>
+        WSGIProcessGroup candig
         WSGIApplicationGroup %{GLOBAL}
         WSGIPassAuthorization On
         Require all granted

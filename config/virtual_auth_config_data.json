@@ -1,0 +1,12 @@
+{
+  "KC_RTYPE": "code",
+  "KC_REALM": "<keycloak-realm>",
+  "KC_CLIENT_ID": "<keycloak-client>",
+  "KC_SERVER": "http://<keycloak-server-address>",
+  "KC_SCOPE": "openid+email",
+  "KC_RMODE": "query",
+  "USE_SSL": false,
+  "KC_SECRET": "<keycloak-client-secret>",
+  "TYK_SERVER": "http://<tyk-gateway-address>",
+  "MAX_TOKEN_AGE": 43200
+}

@@ -1,14 +1,10 @@
-  virtualenv ga4gh-server-env
-  cd ga4gh-server-env
+  python3 -m venv candig-server-env
+  cd candig-server-env
   source bin/activate
   pip install --upgrade pip setuptools
-  pip install git+https://github.com/CanDIG/ga4gh-schemas.git@search#egg=ga4gh_schemas
-  pip install git+https://github.com/CanDIG/ga4gh-client.git@authz#egg=ga4gh_client
-  pip install git+https://github.com/CanDIG/ga4gh-server.git@master#egg=ga4gh_server
-  pip install git+https://github.com/CanDIG/PROFYLE_ingest.git@authz#egg=PROFYLE_ingest
-  mkdir -p /srv/ga4gh/ga4gh-server-env/ga4gh/server/templates
-  touch /srv/ga4gh/ga4gh-server-env/ga4gh/server/templates/initial_peers.txt
+  pip install candig-server
+  pip install candig-ingest
   touch access_list.txt
-  mkdir /srv/ga4gh/ga4gh-server-env/ga4gh-example-data
-  ga4gh_repo init ga4gh-example-data/registry.db
+  mkdir /srv/candig/candig-server-env/candig-example-data
+  candig_repo init candig-example-data/registry.db
   deactivate

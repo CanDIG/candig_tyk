@@ -1,0 +1,6 @@
+{
+  "SESSION_ENDPOINTS": [
+    "/"
+  ],
+  "TYK_SERVER": "http://<tyk-server-address>"
+}
